@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Git（一） | Fluoxetine&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Fluoxetine Fluoxetine's Blog">
+  
+  <meta name="description" content="Git的简介与集中式的区别Git是目前世界上最先进的分布式版本控制系统，没有之一，与集中式的版本控制系统的不同是，集中式版本控制系统的版本库是集中存放在中央服务器的，对于集中式的弊端深有体会，网络一但出现故障，集中式就歇菜了，中央服务器一出问题，也歇菜了。而对于分布式来说每个人都是版本库，做出修改后相互推送就可以看到做出了什么修改，其安全性也比集中式高，比如其中一个人电脑坏了也不要紧，因为每个人都">
+<meta name="keywords" content="hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git（一）">
+<meta property="og:url" content="https://liuqiangniubi.github.io/2019/06/22/Git（一）/index.html">
+<meta property="og:site_name" content="Fluoxetine&#39;s Blog">
+<meta property="og:description" content="Git的简介与集中式的区别Git是目前世界上最先进的分布式版本控制系统，没有之一，与集中式的版本控制系统的不同是，集中式版本控制系统的版本库是集中存放在中央服务器的，对于集中式的弊端深有体会，网络一但出现故障，集中式就歇菜了，中央服务器一出问题，也歇菜了。而对于分布式来说每个人都是版本库，做出修改后相互推送就可以看到做出了什么修改，其安全性也比集中式高，比如其中一个人电脑坏了也不要紧，因为每个人都">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-22T09:59:42.154Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git（一）">
+<meta name="twitter:description" content="Git的简介与集中式的区别Git是目前世界上最先进的分布式版本控制系统，没有之一，与集中式的版本控制系统的不同是，集中式版本控制系统的版本库是集中存放在中央服务器的，对于集中式的弊端深有体会，网络一但出现故障，集中式就歇菜了，中央服务器一出问题，也歇菜了。而对于分布式来说每个人都是版本库，做出修改后相互推送就可以看到做出了什么修改，其安全性也比集中式高，比如其中一个人电脑坏了也不要紧，因为每个人都">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Fluoxetine&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="https://liuqiangniubi.github.io">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                    <a href="/friends">
+                        <i class="fa fa-link"></i>
+                        <span>Friends</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Fluoxetine&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个专注 WEB 开发的技术博客
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/liuqiangniubi">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="#">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="#">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Git（一）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Git（一）
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Git/">Git</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-06-22
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="Git的简介与集中式的区别"><a href="#Git的简介与集中式的区别" class="headerlink" title="Git的简介与集中式的区别"></a>Git的简介与集中式的区别</h3><p>Git是目前世界上最先进的分布式版本控制系统，没有之一，与集中式的版本控制系统的不同是，集中式版本控制系统的版本库是集中存放在中央服务器的，对于集中式的弊端深有体会，网络一但出现故障，集中式就歇菜了，中央服务器一出问题，也歇菜了。而对于分布式来说每个人都是版本库，做出修改后相互推送就可以看到做出了什么修改，其安全性也比集中式高，比如其中一个人电脑坏了也不要紧，因为每个人都是版本库，随便去别的电脑复制一份就好了。</p>
+<h3 id="Git安装与创建版本库"><a href="#Git安装与创建版本库" class="headerlink" title="Git安装与创建版本库"></a>Git安装与创建版本库</h3><p>在linux上安装Git</p>
+<blockquote>
+<p>1.下载编译工具:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`yum -y groupinstall <span class="string">"Development Tools"</span>`</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>2.下载依赖包:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install zlib-devel perl-ExtUtils-MakeMaker asciidoc xmlto openssl-devel</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>3.下载 Git 最新版本的源代码 :<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://www.kernel.org/pub/software/scm/git/git-2.13.3.tar.gz</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>4.解压:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf git-2.11.0.tar.gz</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>5.进入目录配置:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> git-2.13.3 </span><br><span class="line">./configure --prefix=/usr/<span class="built_in">local</span>/git</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>6.安装:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>7.配置全局路径 :<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="string">"/usr/local/git/bin:<span class="variable">$PATH</span>"</span> </span><br><span class="line"><span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>8..查看git版本:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>Git创建版本库</p>
+<blockquote>
+<p>1.创建一个文件夹: mkdir xxx<br>2.初始化版本库: git init</p>
+</blockquote>
+<p>Git上传文件到版本库</p>
+<blockquote>
+<p>1.新建文件xxx<br>2.随便在文件写点东西<br>3.git add xxx<br>4.git commit -m “message“</p>
+</blockquote>
+<h3 id="Git基本知识"><a href="#Git基本知识" class="headerlink" title="Git基本知识"></a>Git基本知识</h3><blockquote>
+<p>1.在上节中提交了一个xxx文件，现在修改文件的内容后，执行<code>git status</code>，可以让我们时刻掌握仓库当前的状态，命令输出告诉我们，xxx文件被修改过了，但还没有准备提交的修改<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">   On branch master</span><br><span class="line">Changes not staged <span class="keyword">for</span> commit:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to update what will be committed)</span><br><span class="line">  (use <span class="string">"git checkout -- &lt;file&gt;..."</span> to discard changes <span class="keyword">in</span> working directory)</span><br><span class="line"></span><br><span class="line">       modified:   <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line">no changes added to commit (use <span class="string">"git add"</span> and/or <span class="string">"git commit -a"</span>)</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>2.当我们忘记上次对文件进行过什么修改的时候，我可以可以执行 <code>git diff</code>命令，顾名思义就是查看difference，显示的格式正是Unix通用的diff格式，可以看出我们修改的是什么</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">   diff --git a/<span class="built_in">test</span> b/<span class="built_in">test</span></span><br><span class="line">index d8036c1..013b5bc 100644</span><br><span class="line">--- a/<span class="built_in">test</span></span><br><span class="line">+++ b/<span class="built_in">test</span></span><br><span class="line">@@ -1,2 +1,2 @@</span><br><span class="line">-Git is a version control system.</span><br><span class="line">+Git is a distributed version control system.</span><br><span class="line"> Git is free software.</span><br><span class="line">\ No newline at end of file</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>3.再次提交代码，<code>git add xxx</code>，<code>git commit -m “消息”</code></p>
+</blockquote>
+<p>版本回退</p>
+<blockquote>
+<p>1.我们平时工作写代码写完某个模块，习惯性的按下c+s保存，git也是，当我们修改到一定的程度的时候，可以将其保存为快照（commit）,我们难免会遇到把文件改乱了或者是误删了，这个时候，我们就可以从最近的快照中恢复继续工作，在git中我们可以使用<code>git log</code>命令查看我们提交的历史版本，显示从最近到最远的提交日志，我们可以看到3次提交，最近的一次是修改第二行，上一次是在第一行添加了distributed，最早的一次是wrote a test file。如果嫌输出信息太多，看得眼花缭乱的，可以试试加上<code>--pretty=oneline</code>参数，出现的字符串为版本号，使用的是<code>SHA1</code>计算的，现在我们回退到上一个版本，执行<code>git reset -- hard HEAD^</code>就可以回退到上一个版本了，<code>HEAD</code>指向的版本就是当前版本，但是执行<code>git log</code>会发现回退之前的版本已经不在了，我们要想回去又该如何，只要你窗口没关，就可以找到上次历史版本的版本号进行回退<code>git reset --hard 9101b7eb2e6803a409115df05efb8e256e0c8a4f</code>当然，就算我们关闭了窗口我们也可以执行<code>git reflog</code>记录你的每一次命令</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">    commit 9101b7eb2e6803a409115df05efb8e256e0c8a4f</span><br><span class="line">	Author: liuqiangniubi &lt;1063256349@qq.com&gt;</span><br><span class="line">	Date:   Sat Jun 22 15:43:40 2019 +0800</span><br><span class="line"></span><br><span class="line">    修改第二行</span><br><span class="line"></span><br><span class="line">	commit 6e975a753c22b73fe1590f34230264c99aa0a7e7</span><br><span class="line">	Author: liuqiangniubi &lt;1063256349@qq.com&gt;</span><br><span class="line">	Date:   Sat Jun 22 15:19:53 2019 +0800</span><br><span class="line"></span><br><span class="line">    在第一行添加了distributed</span><br><span class="line"></span><br><span class="line">	commit e2c9976623f1407f5449984721f3a7a8f2bb3322</span><br><span class="line">	Author: liuqiangniubi &lt;1063256349@qq.com&gt;</span><br><span class="line">	Date:   Sat Jun 22 15:07:35 2019 +0800</span><br><span class="line"></span><br><span class="line">    worte a <span class="built_in">test</span> file</span><br><span class="line">    </span><br><span class="line">git <span class="built_in">log</span> --pretty=oneline</span><br><span class="line">9101b7eb2e6803a409115df05efb8e256e0c8a4f 修改第二行</span><br><span class="line">6e975a753c22b73fe1590f34230264c99aa0a7e7 在第一行添加了distributed</span><br><span class="line">e2c9976623f1407f5449984721f3a7a8f2bb3322 worte a <span class="built_in">test</span> file</span><br></pre></td></tr></table></figure>
+<p>工作区和暂存区</p>
+<blockquote>
+<p>1.工作区：就是我们一开始创建的文件夹，这个就是工作区<br>2.版本库：在工作区中有一个.git隐藏目录，称为版本库，Git的版本库里面存放了很多东西，其中最为重要的是<code>stage</code>,也就是暂存区，之前我们提交文件到Git版本库的时候执行<code>git add xxx</code>就是添加到暂存区，之后执行<code>git commit -m</code>就是将暂存区的所有文件提交到当前分支，在我们创建版本库的时候，git会自动帮我们创建一个master分支</p>
+</blockquote>
+<p>管理修改</p>
+<blockquote>
+<p>Git之所以比其他版本控制系统优秀，是因为Git跟踪并管理的是修改而并非文件，为何这么说，假设我们现在修改一个文件，执行<code>git add xxx</code>命令，之后再去修改文件，直接提交，我们第一次修改 执行<code>git add</code>之后就将文件提交到了暂存区，而第二次修改并未提交，Git针对的是修改，而并非文件，不管进行多少次修改，你并没有将其提交到暂存区，他都不会提交不在暂存区的修改，所有每次修改之后就行一次<code>git add</code>在执行<code>git commit</code></p>
+</blockquote>
+<p>撤销修改</p>
+<blockquote>
+<p>如果你不小心将工作区的某个文件内容修改错误了，你想回退，删除这个修改，可以执行<code>git checkout -- file</code>回退到你修改之前的版本，假设你又不小心添加到了缓存区，你可以执行<code>git reset HEAD&lt;file&gt;</code>，之后在执行<code>git checkout -- file</code>就可以回退到自己未修改前的版本了</p>
+</blockquote>
+<p>删除文件</p>
+<blockquote>
+<p>在Git中我们在工作区添加了一个文件并进行提交，之后你删除了该文件，我们决定要删除，就可以从版本库中删除该文件，执行<code>git rm xxx</code>以及<code>git commit</code> 就从版本库中删除了，如果我们返回了不想删除，就可以执行<code>git checkout -- file</code>就可以还原文件了</p>
+</blockquote>
+<p>添加远程库</p>
+<blockquote>
+<p>在添加之前，我们应该让本地Git仓库和GitHub远程仓库之间通过ssh通信：<br>（1）创建SSH Key，在用户主目录下查找.ssh目录找到id_rsa.pub文件复制里面的内容<br>（2）登录GitHub，打开setting，点击ssh key进行添加<br>然后我们就在GitHub上创建一个仓库，然后执行<code>git remote add 远程库名 git@github.com:git账户名/本地仓库名.git</code>之后我们就可以将本地仓库的所有内容推送到远程库上去，执行<code>git push -u 远程库名 master</code>,现在只要本地提交了，就可以将最新修改推送到GitHub上，执行<code>git push 远程库名 master</code></p>
+</blockquote>
+<p>远程库克隆</p>
+<blockquote>
+<p>登录GitHub，创建远程库，执行<code>git clone git@github.com:github用户名/远程库名.git</code></p>
+</blockquote>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2019年06月22日 17:59</p>
+        <p>原始链接： <a class="post-url" href="/2019/06/22/Git（一）/" title="Git（一）">https://liuqiangniubi.github.io/2019/06/22/Git（一）/</a></p>
+        <footer>
+            <a href="https://liuqiangniubi.github.io">
+                <img src="/images/logo.png" alt="Fluoxetine">
+                Fluoxetine
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuqiangniubi.github.io/2019/06/22/Git（一）/&title=《Git（一）》 — Fluoxetine's Blog&pic=images/photo_3.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuqiangniubi.github.io/2019/06/22/Git（一）/&title=《Git（一）》 — Fluoxetine's Blog&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuqiangniubi.github.io/2019/06/22/Git（一）/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Git（一）》 — Fluoxetine's Blog&url=https://liuqiangniubi.github.io/2019/06/22/Git（一）/&via=https://liuqiangniubi.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuqiangniubi.github.io/2019/06/22/Git（一）/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://liuqiangniubi.github.io/2019/06/22/Git（一）/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/hexo/" class="color5">hexo</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Git的简介与集中式的区别"><span class="post-toc-text">Git的简介与集中式的区别</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Git安装与创建版本库"><span class="post-toc-text">Git安装与创建版本库</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Git基本知识"><span class="post-toc-text">Git基本知识</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2019/06/03/SpringBoot整合Redis/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">SpringBoot整合Redis</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Fluoxetine<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://liuqiangniubi.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 0
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Git/">Git</a><a class="category-link" href="/categories/SpringBoot/">SpringBoot</a><a class="category-link" href="/categories/其他/">其他</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/hexo/" style="font-size: 10px;">hexo</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="https://liuqiangniubi.github.io">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/friends">
+                    <i class="fa fa-link"></i><span>Friends</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/hexo/" style="font-size: 10px;">hexo</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+	<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+	<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+	<script type="text/javascript" src="/js/fireworks.js"></script>
+	<script type="text/javascript" src="http://libs.baidu.com/jquery/1.8.3/jquery.js"></script>
+	<script type="text/javascript" src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+
+	<!-- 雪花特效 -->
+	<script type="text/javascript" src="\js\snow.js"></script>
+	<!--浏览器搞笑标题-->
+	<script type="text/javascript" src="\js\FunnyTitle.js"></script>
+
+	
+	
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"tagMode":false});</script></body>
+</html>
