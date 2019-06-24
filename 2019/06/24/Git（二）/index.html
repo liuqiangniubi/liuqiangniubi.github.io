@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Git（一） | Fluoxetine&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="Fluoxetine Fluoxetine's Blog">
+  
+  <meta name="description" content="Git分支管理分支  在版本回退的时候，我们知道每次提交，Git都会把他们串成一条时间线，而这条时间线我们就称为分支，而我们创建一个新的版本库的时候，就只有一条分支，这条分支叫做master主分支  创建分支  执行git checkout -b xxx，这条命令相当于git branch xxx（创建xxx分支）和git checkout xxx（切换xxx分支），即创建并切换分支，执行git">
+<meta name="keywords" content="hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git（一）">
+<meta property="og:url" content="https://liuqiangniubi.github.io/2019/06/24/Git（二）/index.html">
+<meta property="og:site_name" content="Fluoxetine&#39;s Blog">
+<meta property="og:description" content="Git分支管理分支  在版本回退的时候，我们知道每次提交，Git都会把他们串成一条时间线，而这条时间线我们就称为分支，而我们创建一个新的版本库的时候，就只有一条分支，这条分支叫做master主分支  创建分支  执行git checkout -b xxx，这条命令相当于git branch xxx（创建xxx分支）和git checkout xxx（切换xxx分支），即创建并切换分支，执行git">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-24T03:03:33.956Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git（一）">
+<meta name="twitter:description" content="Git分支管理分支  在版本回退的时候，我们知道每次提交，Git都会把他们串成一条时间线，而这条时间线我们就称为分支，而我们创建一个新的版本库的时候，就只有一条分支，这条分支叫做master主分支  创建分支  执行git checkout -b xxx，这条命令相当于git branch xxx（创建xxx分支）和git checkout xxx（切换xxx分支），即创建并切换分支，执行git">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">Fluoxetine&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="https://liuqiangniubi.github.io">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                    <a href="/friends">
+                        <i class="fa fa-link"></i>
+                        <span>Friends</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Fluoxetine&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个专注 WEB 开发的技术博客
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="Github" target="_blank" href="//github.com/liuqiangniubi">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="#">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="#">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-Git（二）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      Git（一）
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/Git/">Git</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-06-24
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h3 id="Git分支管理"><a href="#Git分支管理" class="headerlink" title="Git分支管理"></a>Git分支管理</h3><p>分支</p>
+<blockquote>
+<p>在版本回退的时候，我们知道每次提交，Git都会把他们串成一条时间线，而这条时间线我们就称为分支，而我们创建一个新的版本库的时候，就只有一条分支，这条分支叫做<code>master</code>主分支</p>
+</blockquote>
+<p>创建分支</p>
+<blockquote>
+<p>执行<code>git checkout -b xxx</code>，这条命令相当于<code>git branch xxx（创建xxx分支）</code>和<code>git checkout xxx（切换xxx分支）</code>，即创建并切换分支，执行<code>git branch</code>会查看当前分支，同时也会查询所有分支</p>
+</blockquote>
+<p>分支合并</p>
+<blockquote>
+<p>当我们创建一个分支并切换到该分支，无论你做什么操作，提交之后，只是提交到你当前分支，你切回主分支，是不会有任何改变，需要将之前操作的数据让主分支也有，就需要进行分支合并，执行<code>git merge xxx</code>，该命令用于合并指定分支到当前分支，合并之后我们就可以看到，之前在另外一个分支操作的数据在主分支也有了，这种合并方式为<code>快进模式</code>，即，直接将master分支指向另一个分支，所以速度非常快</p>
+</blockquote>
+<p>分支删除</p>
+<blockquote>
+<p>当我们合并了分支之后，不需要这只分支了，我们可以执行<code>git branch -d xxx</code>，执行后查看一下分支就会发现，这个分支被删除了</p>
+</blockquote>
+<p>分支合并冲突</p>
+<blockquote>
+<p>当我们创建并切换到该分支，进行操作后，切换为主分支，同样进行操作，提交之后进行分支合并，此时合并会导致冲突，从而无法合并，使用<code>git status</code>查看工作区可以看到冲突，此时我们需要自己手动编辑文件保留我们所需要的数据，之后提交，就可以解决分支冲突，可以使用<code>git log --graph --pretty=oneline --abbrev-commit</code>命令看到分支合并图</p>
+</blockquote>
+<p>分支管理策略</p>
+<blockquote>
+<p>一般我们在未做出任何指定时，我们使用的是<code>快进模式</code>进行分支合并，这种方式在删除分支之后，会丢掉分支信息，我们可以在合并的时候加上<code>--no-ff</code>参数，即表示禁用<code>快进模式</code>，此时Git会在<code>merge</code>时生成一个新的commit，这样就可以在分支历史上看出分支信息</p>
+</blockquote>
+<p>“储藏”分支</p>
+<blockquote>
+<p>有的时候我们在工作时，突然领导下发一个紧急bug需要修复，我们第一个想法就是创建分支来修复他，但是目前手头工作并没有完成，没办法提交，此时Git还提供了<code>git stash</code>命令，让我们将当前工作<code>储藏</code>起来，等完成修复之后在恢复，使用<code>git stash list</code>查看我们<code>储藏</code>的工作，此时我们有两个办法：<br>（1）使用<code>git stash apply</code>恢复，但是恢复后stash内容不会删除，需要我们手动执行<code>git stash drop</code>进行删除<br>（2）使用<code>git stash pop</code>，恢复的同时将<code>stash</code>内容删除<br>ps:你可以多次使用<code>stash</code>，恢复的时候，先查看<code>stash列表</code>，指定性的恢复</p>
+</blockquote>
+<p>强制删除分支</p>
+<blockquote>
+<p>我们进行分支删除的时候，直接使用<code>git branch -d xxx</code>进行删除，但是这个在分支已经进行了合并的情况下，假设你的分支并没有进行合并，执行该命令，会弹出删除失败，提示你分支并没有合并，如果被删除，将丢失修改，此时我们又不需要此分支，我们就可以使用<code>git branch -D xxx</code>进行强制删除</p>
+</blockquote>
+<p>分支推送</p>
+<blockquote>
+<p>当我们代码需要推送到远程仓库时，可以使用<code>git push 仓库名 分支名</code>进行推送</p>
+</blockquote>
+<h3 id="标签管理"><a href="#标签管理" class="headerlink" title="标签管理"></a>标签管理</h3><blockquote>
+<p>有的时候，我们需要对某个版本进行打包，但是对于<code>commit id</code>又过于复杂，不好诉说，此时就需要标签</p>
+</blockquote>
+<p>创建标签</p>
+<blockquote>
+<p>在你需要打标签的分支上执行<code>git tag xxx</code>就可以打上一个新的标签，默认是在最新提交的<code>commit</code>上打标签，我们可以使用<code>git tag</code>查看所有标签，还可以指定<code>commit id</code>打标签，执行<code>git tag xxx commit id</code>，也可以创建带有说明的标签,<code>git tag -a xxx -m &quot;说明&quot; commit id</code></p>
+</blockquote>
+<p>操作标签</p>
+<blockquote>
+<p>推送某个标签到远程仓库<code>git push 仓库名 标签名</code><br>推送全部标签到远程仓库<code>git push 仓库名 --tags</code><br>删除未推送到远程的标签，即本地标签<code>git tag -d 标签名</code><br>删除远程标签，首先删除本地标签<code>git tag -d 标签名</code>，然后删除远程标签<code>git push 仓库名 :refs/tags/标签名</code></p>
+</blockquote>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2019年06月24日 11:03</p>
+        <p>原始链接： <a class="post-url" href="/2019/06/24/Git（二）/" title="Git（一）">https://liuqiangniubi.github.io/2019/06/24/Git（二）/</a></p>
+        <footer>
+            <a href="https://liuqiangniubi.github.io">
+                <img src="/images/logo.png" alt="Fluoxetine">
+                Fluoxetine
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://liuqiangniubi.github.io/2019/06/24/Git（二）/&title=《Git（一）》 — Fluoxetine's Blog&pic=images/photo_4.jpg" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://liuqiangniubi.github.io/2019/06/24/Git（二）/&title=《Git（一）》 — Fluoxetine's Blog&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://liuqiangniubi.github.io/2019/06/24/Git（二）/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Git（一）》 — Fluoxetine's Blog&url=https://liuqiangniubi.github.io/2019/06/24/Git（二）/&via=https://liuqiangniubi.github.io" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://liuqiangniubi.github.io/2019/06/24/Git（二）/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://liuqiangniubi.github.io/2019/06/24/Git（二）/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/hexo/" class="color5">hexo</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Git分支管理"><span class="post-toc-text">Git分支管理</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#标签管理"><span class="post-toc-text">标签管理</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2019/06/22/Git（一）/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">Git（一）</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Fluoxetine<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://liuqiangniubi.github.io",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 0
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/categories/Git/">Git</a><a class="category-link" href="/categories/SpringBoot/">SpringBoot</a><a class="category-link" href="/categories/其他/">其他</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/tags/hexo/" style="font-size: 10px;">hexo</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="https://liuqiangniubi.github.io">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/friends">
+                    <i class="fa fa-link"></i><span>Friends</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/tags/hexo/" style="font-size: 10px;">hexo</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+	<canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+	<script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+	<script type="text/javascript" src="/js/fireworks.js"></script>
+	<script type="text/javascript" src="http://libs.baidu.com/jquery/1.8.3/jquery.js"></script>
+	<script type="text/javascript" src="http://libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
+
+	<!-- 雪花特效 -->
+	<script type="text/javascript" src="\js\snow.js"></script>
+	<!--浏览器搞笑标题-->
+	<script type="text/javascript" src="\js\FunnyTitle.js"></script>
+
+	
+	
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","model":{"jsonPath":"/live2dw/assets/hibiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false,"tagMode":false});</script></body>
+</html>
